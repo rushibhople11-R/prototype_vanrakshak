@@ -1,0 +1,311 @@
+.radarCard {
+  background: linear-gradient(180deg, #12191f 0%, #0c1216 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.radarCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.3) 50%, transparent 100%);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.badge {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--accent-cyan);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  font-weight: 700;
+}
+
+.pulseDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent-emerald-bright);
+  box-shadow: 0 0 8px var(--accent-emerald-bright);
+}
+
+.subtext {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.radarViewport {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background-color: #080d11;
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Concentric Distance Rings */
+.rangeRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed rgba(56, 189, 248, 0.18);
+  pointer-events: none;
+}
+
+.ring1 {
+  width: 90px;
+  height: 90px;
+}
+
+.ring2 {
+  width: 165px;
+  height: 165px;
+}
+
+.ring3 {
+  width: 240px;
+  height: 240px;
+  border-style: solid;
+  border-color: rgba(56, 189, 248, 0.12);
+}
+
+/* Crosshair lines */
+.axisH {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+
+.axisV {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+
+/* Rotating Radar Sweep Line */
+.sweepArm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130px;
+  height: 130px;
+  transform-origin: 0% 0%;
+  background: conic-gradient(from 0deg, rgba(16, 185, 129, 0.25) 0deg, transparent 55deg);
+  border-radius: 100% 0 0 0;
+  animation: radarSpin 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes radarSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Center LoRa Gateway */
+.gatewayCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  cursor: default;
+}
+
+.gatewayIcon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.2);
+  border: 1.5px solid var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+.gatewayLabel {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--accent-cyan);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+/* Node Markers on Radar */
+.nodePoint {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.15s ease;
+}
+
+.nodePoint:hover {
+  transform: translate(-50%, -50%) scale(1.25);
+}
+
+.nodeCore {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--accent-emerald-bright);
+  box-shadow: 0 0 8px var(--accent-emerald-bright);
+  border: 1px solid #ffffff;
+}
+
+.nodeLabel {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: #cbd5e1;
+  font-weight: 600;
+  margin-top: 2px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.nodeAlert .nodeCore {
+  background-color: var(--threat-critical);
+  box-shadow: 0 0 10px var(--threat-critical);
+  border-color: #ffffff;
+}
+
+.nodeAlert .nodeLabel {
+  color: #ff6b8b;
+  font-weight: 700;
+}
+
+.nodeSleep .nodeCore {
+  background-color: var(--text-muted);
+  box-shadow: none;
+}
+
+/* Acoustic Echo Wave Radiating from Alert Node */
+.acousticEchoRing {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid var(--threat-critical);
+  animation: echoPulse 1.8s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes echoPulse {
+  0% {
+    width: 6px;
+    height: 6px;
+    opacity: 1;
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+  }
+}
+
+/* Distance markers text */
+.marker500,
+.marker1000,
+.marker1500 {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: rgba(56, 189, 248, 0.5);
+  pointer-events: none;
+}
+
+.marker500 {
+  top: calc(50% - 54px);
+  left: 52%;
+}
+
+.marker1000 {
+  top: calc(50% - 92px);
+  left: 52%;
+}
+
+.marker1500 {
+  top: calc(50% - 130px);
+  left: 52%;
+}
+
+/* Telemetry Footer Bar */
+.telemetryBar {
+  background: var(--bg-panel-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 11px;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+}
+
+.nodeDetailRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.idleHint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: var(--text-muted);
+}

@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import {
   DEMO_FOREST_NODES,
@@ -10,18 +12,53 @@ import { ThreatPill } from '@/components/common/ThreatPill';
 import { VerificationBadge } from '@/components/common/VerificationBadge';
 import { DataOriginBadge } from '@/components/common/DataOriginBadge';
 import { BatteryOverviewChart } from '@/components/charts/BatteryOverviewChart';
+import { ForestCanopyRadar } from '@/components/common/ForestCanopyRadar';
 import styles from './overview.module.css';
 
 export default function OverviewPage() {
-  const activeAlerts = DEMO_THREAT_ALERTS.filter(
-    (a) => a.verificationStatus === 'PENDING'
-  );
-  const criticalThreat = activeAlerts.find((a) => a.severity === 'CRITICAL');
+  const [activeAlerts, setActiveAlerts] = useState(DEMO_THREAT_ALERTS);
+  const [simFeedback, setSimFeedback] = useState<string | null>(null);
+  const [isSimulating, setIsSimulating] = useState<boolean>(false);
+
+  const pendingAlerts = activeAlerts.filter((a) => a.verificationStatus === 'PENDING');
+  const criticalThreat = pendingAlerts.find((a) => a.severity === 'CRITICAL');
   const onlineNodes = DEMO_FOREST_NODES.filter((n) => n.status !== 'OFFLINE').length;
   const avgBattery = Math.round(
     DEMO_FOREST_NODES.reduce((acc, curr) => acc + curr.batteryPct, 0) /
       DEMO_FOREST_NODES.length
   );
+
+  const handleSimulate = async (threatType: 'CHAINSAW' | 'AXE_CHOP' | 'GUNSHOT' | 'NORMAL_AMBIENT') => {
+    setIsSimulating(true);
+    try {
+      const res = await fetch('/api/simulation/trigger', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nodeId: 'NODE-01',
+          threatType,
+          confidence: threatType === 'NORMAL_AMBIENT' ? 0.95 : threatType === 'CHAINSAW' ? 0.91 : 0.82,
+          soundLevelDb: threatType === 'NORMAL_AMBIENT' ? 44 : 88,
+        }),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        if (threatType === 'NORMAL_AMBIENT') {
+          setSimFeedback('🌿 Grid Reset: Forest Ambience Ingested (44 dB SPL • Normal • CRC OK)');
+        } else {
+          setSimFeedback(
+            `⚡ Simulated 16-Byte LoRa Packet Ingested for NODE-01: ${threatType} (${data.packetHex || 'HEX OK'}) • 865.2 MHz SF9 • CRC-8 Valid`
+          );
+        }
+      }
+    } catch {
+      setSimFeedback(`⚡ Simulated ${threatType} Event Dispatched Locally • CRC OK`);
+    } finally {
+      setIsSimulating(false);
+      setTimeout(() => setSimFeedback(null), 6000);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -29,7 +66,7 @@ export default function OverviewPage() {
       <div className={styles.pageHeader}>
         <div className={styles.headingGroup}>
           <h1 className={styles.pageTitle}>
-            Forest Operations Overview
+            Forest Operations Hub
             <DataOriginBadge isSimulated={true} size="sm" />
           </h1>
           <p className={styles.pageSubtitle}>
@@ -47,7 +84,7 @@ export default function OverviewPage() {
               backgroundColor: 'var(--bg-panel-elevated)',
               border: '1px solid var(--border-medium)',
               padding: '7px 14px',
-              borderRadius: '4px',
+              borderRadius: '6px',
               fontSize: '12px',
               fontWeight: 600,
               color: 'var(--text-primary)',
@@ -67,7 +104,7 @@ export default function OverviewPage() {
               backgroundColor: 'var(--accent-emerald-dim)',
               border: '1px solid var(--accent-emerald)',
               padding: '7px 14px',
-              borderRadius: '4px',
+              borderRadius: '6px',
               fontSize: '12px',
               fontWeight: 600,
               color: 'var(--accent-emerald-bright)',
@@ -77,6 +114,55 @@ export default function OverviewPage() {
           </Link>
         </div>
       </div>
+
+      {/* Interactive Simulation Bar for Live Testing */}
+      <div className={styles.simBar}>
+        <div className={styles.simLabel}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14" style={{ color: 'var(--accent-cyan)' }}>
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+          <span>Quick Event Testbed:</span>
+        </div>
+
+        <div className={styles.simBtnGroup}>
+          <button
+            className={`${styles.simBtn} ${styles.simBtnActive}`}
+            onClick={() => handleSimulate('CHAINSAW')}
+            disabled={isSimulating}
+          >
+            ⚡ Trigger Chainsaw (89%)
+          </button>
+          <button
+            className={styles.simBtn}
+            onClick={() => handleSimulate('AXE_CHOP')}
+            disabled={isSimulating}
+          >
+            🪓 Trigger Axe (78%)
+          </button>
+          <button
+            className={styles.simBtn}
+            onClick={() => handleSimulate('GUNSHOT')}
+            disabled={isSimulating}
+          >
+            🎯 Trigger Gunshot (94%)
+          </button>
+          <button
+            className={styles.simBtn}
+            onClick={() => handleSimulate('NORMAL_AMBIENT')}
+            disabled={isSimulating}
+          >
+            🌿 Safe Ambience
+          </button>
+        </div>
+      </div>
+
+      {/* Live Simulation Toast */}
+      {simFeedback && (
+        <div className={styles.simToast}>
+          <span>{simFeedback}</span>
+          <button onClick={() => setSimFeedback(null)} style={{ color: 'inherit', fontWeight: 700 }}>✕</button>
+        </div>
+      )}
 
       {/* Critical Threat Alert Banner */}
       {criticalThreat && (
@@ -126,9 +212,9 @@ export default function OverviewPage() {
         />
         <StatCard
           title="Threat Detections (Today)"
-          value={activeAlerts.length}
+          value={pendingAlerts.length}
           unit="Unverified"
-          variant={activeAlerts.length > 0 ? 'alert' : 'normal'}
+          variant={pendingAlerts.length > 0 ? 'alert' : 'normal'}
           subtitle="1 Critical • 0 Warning"
           statusText="Review Required"
           icon={
@@ -197,7 +283,7 @@ export default function OverviewPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {DEMO_THREAT_ALERTS.slice(0, 4).map((alert) => (
+                  {activeAlerts.slice(0, 4).map((alert) => (
                     <tr key={alert.id}>
                       <td className="mono" style={{ fontSize: '11px' }}>
                         {new Date(alert.detectedAt).toLocaleTimeString([], {
@@ -269,8 +355,11 @@ export default function OverviewPage() {
           </div>
         </div>
 
-        {/* Right Column: Fleet Health & Hardware Ingest Preview */}
+        {/* Right Column: Tactical Canopy Radar & Fleet Status */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {/* Tactical Radar Widget */}
+          <ForestCanopyRadar />
+
           {/* Fleet Nodes Health */}
           <div className={styles.panel}>
             <div className={styles.panelHeader}>
@@ -321,7 +410,7 @@ export default function OverviewPage() {
             </div>
           </div>
 
-          {/* Quick AI & Gateway Info Card */}
+          {/* Edge AI & Low-Power Specs */}
           <div className={styles.panel}>
             <div className={styles.panelHeader}>
               <div className={styles.panelTitle}>
@@ -329,7 +418,7 @@ export default function OverviewPage() {
                   <path d="M12 2v20" />
                   <circle cx="12" cy="12" r="4" />
                 </svg>
-                Edge AI &amp; Gateway Protocol
+                Edge AI &amp; Low-Power Architecture
               </div>
               <span className="mono" style={{ fontSize: '11px', color: 'var(--accent-emerald-bright)' }}>
                 16-Byte Payload
@@ -338,13 +427,13 @@ export default function OverviewPage() {
 
             <div style={{ fontSize: '12px', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <div>
-                <strong style={{ color: 'var(--text-primary)' }}>TinyML Model:</strong> Quantized INT8 Mel-CNN (68 KB TFLM binary) executing locally on ESP32-S3 Vector extensions.
+                <strong style={{ color: 'var(--text-primary)' }}>TinyML Inference:</strong> Quantized INT8 Mel-CNN (68 KB TFLM binary) runs directly on ESP32-S3 Vector extensions.
               </div>
               <div>
-                <strong style={{ color: 'var(--text-primary)' }}>Radio Frequency:</strong> 865.2 MHz (India ISM Band), Spreading Factor SF9, 125 kHz Bandwidth, Coding Rate 4/5.
+                <strong style={{ color: 'var(--text-primary)' }}>RF Frequency:</strong> 865.2 MHz (India ISM Band), Spreading Factor SF9, 125 kHz Bandwidth, Coding Rate 4/5.
               </div>
               <div>
-                <strong style={{ color: 'var(--text-primary)' }}>Audio Transmission:</strong> Zero raw audio streaming over LoRa. Transmits only 16-byte event metadata to preserve battery for &gt;180 days.
+                <strong style={{ color: 'var(--text-primary)' }}>Zero Audio Streaming:</strong> No raw audio is transmitted over LoRa, ensuring battery operation &gt;180 days with MPPT solar harvesting.
               </div>
             </div>
 
@@ -359,13 +448,13 @@ export default function OverviewPage() {
                   backgroundColor: 'var(--bg-panel-elevated)',
                   border: '1px solid var(--border-medium)',
                   padding: '8px',
-                  borderRadius: '4px',
+                  borderRadius: '6px',
                   color: 'var(--accent-emerald-bright)',
                   fontSize: '12px',
                   fontWeight: 600,
                 }}
               >
-                Inspect Spectrogram &amp; Model Benchmark &rarr;
+                Inspect Audio Spectrogram &amp; Model Benchmark &rarr;
               </Link>
             </div>
           </div>

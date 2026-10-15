@@ -2,80 +2,70 @@
 
 :root {
   /* ----------------------------------------------------
-     VanRakshak Premium Forest-Slate Color Architecture
+     VanRakshak Clean & Impressive Modern Dashboard Palette
+     Inspired by Linear, Vercel, and modern environmental intelligence
      ---------------------------------------------------- */
   
-  /* Background Foundations (Velvety Forest Obsidian) */
-  --bg-base: #070d0a;
-  --bg-sidebar: #0a130f;
-  --bg-panel: rgba(14, 24, 19, 0.82);
-  --bg-panel-elevated: rgba(20, 35, 28, 0.9);
-  --bg-panel-hover: rgba(28, 48, 38, 0.95);
-  --bg-input: #08100d;
+  /* Background Foundations (Deep, Clean, Eye-Soothing Slate Charcoal) */
+  --bg-base: #090d10;
+  --bg-sidebar: #0d1216;
+  --bg-panel: #12191e;
+  --bg-panel-elevated: #162026;
+  --bg-panel-hover: #1b272f;
+  --bg-input: #0b1013;
 
-  /* Glassmorphism & Surface Highlights */
-  --glass-blur: blur(16px);
-  --card-highlight: linear-gradient(180deg, rgba(52, 211, 153, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
-  --panel-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+  /* Crisp, Hairline Borders & Shadows */
+  --border-subtle: #1b252c;
+  --border-medium: #24323b;
+  --border-highlight: #354854;
+  --panel-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.2);
 
-  /* Precise Borders & Divider Lines */
-  --border-subtle: rgba(30, 52, 41, 0.6);
-  --border-medium: rgba(45, 78, 62, 0.7);
-  --border-highlight: rgba(52, 211, 153, 0.4);
-  --border-glow: 0 0 15px rgba(16, 185, 129, 0.2);
-
-  /* High-Fidelity Typography */
+  /* Modern High-Legibility Typography */
   --text-primary: #f8fafc;
-  --text-secondary: #9cb3a6;
-  --text-muted: #5e796c;
-  --text-on-accent: #021a0f;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-on-accent: #04140b;
 
-  /* Bioluminescent Emerald Accents */
+  /* Iconic Accents */
   --accent-emerald: #10b981;
   --accent-emerald-bright: #34d399;
-  --accent-emerald-dim: rgba(16, 185, 129, 0.16);
-  --accent-glow: rgba(16, 185, 129, 0.25);
-
-  /* Radio Link & Telemetry Electric Cyan */
+  --accent-emerald-dim: rgba(16, 185, 129, 0.12);
   --accent-cyan: #38bdf8;
-  --accent-cyan-dim: rgba(56, 189, 248, 0.16);
+  --accent-cyan-dim: rgba(56, 189, 248, 0.12);
 
-  /* Solar Harvest & Warning Amber Gold */
-  --accent-gold: #fbbf24;
-  --threat-warning: #f59e0b;
-  --threat-warning-bg: rgba(245, 158, 11, 0.14);
-  --threat-warning-border: rgba(245, 158, 11, 0.45);
-
-  /* Threat Severity Tones */
+  /* Warnings & Threats */
   --threat-critical: #f43f5e;
-  --threat-critical-bg: rgba(244, 63, 94, 0.15);
-  --threat-critical-border: rgba(244, 63, 94, 0.45);
-  --threat-critical-glow: 0 0 18px rgba(244, 63, 94, 0.35);
+  --threat-critical-bg: rgba(244, 63, 94, 0.12);
+  --threat-critical-border: rgba(244, 63, 94, 0.35);
 
-  --threat-info: #0ea5e9;
-  --threat-info-bg: rgba(14, 165, 233, 0.14);
-  --threat-info-border: rgba(14, 165, 233, 0.4);
+  --threat-warning: #f59e0b;
+  --threat-warning-bg: rgba(245, 158, 11, 0.12);
+  --threat-warning-border: rgba(245, 158, 11, 0.35);
+
+  --threat-info: #0284c7;
+  --threat-info-bg: rgba(2, 132, 199, 0.12);
+  --threat-info-border: rgba(2, 132, 199, 0.35);
 
   --threat-safe: #10b981;
-  --threat-safe-bg: rgba(16, 185, 129, 0.14);
-  --threat-safe-border: rgba(16, 185, 129, 0.4);
+  --threat-safe-bg: rgba(16, 185, 129, 0.12);
+  --threat-safe-border: rgba(16, 185, 129, 0.35);
 
   /* Data Integrity Badges */
-  --badge-sim-bg: rgba(245, 158, 11, 0.14);
-  --badge-sim-border: rgba(245, 158, 11, 0.45);
+  --badge-sim-bg: rgba(245, 158, 11, 0.12);
+  --badge-sim-border: rgba(245, 158, 11, 0.35);
   --badge-sim-text: #fbbf24;
 
-  --badge-live-bg: rgba(16, 185, 129, 0.16);
-  --badge-live-border: rgba(52, 211, 153, 0.5);
+  --badge-live-bg: rgba(16, 185, 129, 0.12);
+  --badge-live-border: rgba(16, 185, 129, 0.35);
   --badge-live-text: #34d399;
 
   /* Font Families */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
 
   /* Layout Constants */
-  --sidebar-width: 268px;
-  --header-height: 62px;
+  --sidebar-width: 260px;
+  --header-height: 60px;
 }
 
 * {
@@ -97,7 +87,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Atmospheric Subtle Mesh Background */
+/* Subtle, High-End Ambient Background Glow */
 body::before {
   content: "";
   position: fixed;
@@ -106,9 +96,8 @@ body::before {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 85% 75%, rgba(56, 189, 248, 0.04) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(5, 150, 105, 0.03) 0%, transparent 60%);
+    radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 90% 85%, rgba(56, 189, 248, 0.04) 0%, transparent 45%);
   pointer-events: none;
   z-index: 0;
 }

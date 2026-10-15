@@ -199,14 +199,7 @@ export const Sidebar: React.FC = () => {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.brand}>
-        <VanRakshakLogo size={36} />
-        <div className={styles.brandInfo}>
-          <div className={styles.brandTitle}>
-            VanRakshak
-            <span className={styles.brandTag}>TinyML</span>
-          </div>
-          <div className={styles.brandSubtitle}>Acoustic Forest Monitor</div>
-        </div>
+        <VanRakshakLogo size={34} showText={true} subtitle="Acoustic Sentinel Grid" />
       </div>
 
       <nav className={styles.navSection}>
