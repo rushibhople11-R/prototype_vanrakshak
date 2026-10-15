@@ -1,0 +1,36 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+
+.pending {
+  background-color: var(--threat-warning-bg);
+  color: var(--threat-warning);
+  border-color: var(--threat-warning-border);
+}
+
+.verified {
+  background-color: var(--threat-critical-bg);
+  color: var(--threat-critical);
+  border-color: var(--threat-critical-border);
+}
+
+.falsePositive {
+  background-color: var(--bg-panel-elevated);
+  color: var(--text-muted);
+  border-color: var(--border-medium);
+}
+
+.resolved {
+  background-color: var(--threat-safe-bg);
+  color: var(--threat-safe);
+  border-color: var(--threat-safe-border);
+}

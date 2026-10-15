@@ -1,0 +1,145 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gatewayStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.statCard {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.statTitle {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.statVal {
+  font-size: 20px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: #38bdf8;
+}
+
+.statSub {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.twoColLayout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .twoColLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.packetList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.packetRow {
+  background-color: var(--bg-panel-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.15s ease;
+}
+
+.packetRow:hover {
+  border-color: var(--border-highlight);
+}
+
+.packetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.rawHexBlock {
+  background-color: #060a08;
+  border: 1px solid var(--border-medium);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #38bdf8;
+  letter-spacing: 0.08em;
+  word-break: break-all;
+}
+
+.packetMeta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.byteDecoderGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  background-color: var(--bg-panel-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 11px;
+}
+
+.byteField {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.byteKey {
+  color: var(--text-muted);
+}
+
+.byteVal {
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}

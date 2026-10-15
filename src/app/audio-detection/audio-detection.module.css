@@ -1,0 +1,185 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.metricCard {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metricTitle {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.metricVal {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--accent-emerald-bright);
+}
+
+.metricSub {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.workbenchGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .workbenchGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sampleList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sampleItem {
+  background-color: var(--bg-panel-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.sampleItem:hover {
+  background-color: var(--bg-panel-hover);
+  border-color: var(--border-highlight);
+}
+
+.sampleItemActive {
+  border-color: var(--accent-emerald);
+  background-color: rgba(16, 185, 129, 0.06);
+}
+
+.sampleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sampleTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.sampleDesc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.spectrogramContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.spectrogramBars {
+  display: flex;
+  align-items: flex-end;
+  height: 160px;
+  gap: 4px;
+  padding: 12px;
+  background-color: #070c09;
+  border: 1px solid var(--border-medium);
+  border-radius: 4px;
+}
+
+.freqBar {
+  flex: 1;
+  background-color: var(--accent-emerald);
+  border-radius: 2px 2px 0 0;
+  transition: height 0.3s ease, background-color 0.3s ease;
+  min-height: 4px;
+}
+
+.pipelineFlow {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pipelineSteps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.pipelineStep {
+  background-color: var(--bg-panel-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stepNum {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent-emerald-bright);
+}
+
+.stepTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stepDetail {
+  font-size: 11px;
+  color: var(--text-muted);
+}

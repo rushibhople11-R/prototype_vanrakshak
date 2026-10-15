@@ -1,0 +1,223 @@
+@import 'leaflet/dist/leaflet.css';
+
+:root {
+  /* ----------------------------------------------------
+     VanRakshak Premium Forest-Slate Color Architecture
+     ---------------------------------------------------- */
+  
+  /* Background Foundations (Velvety Forest Obsidian) */
+  --bg-base: #070d0a;
+  --bg-sidebar: #0a130f;
+  --bg-panel: rgba(14, 24, 19, 0.82);
+  --bg-panel-elevated: rgba(20, 35, 28, 0.9);
+  --bg-panel-hover: rgba(28, 48, 38, 0.95);
+  --bg-input: #08100d;
+
+  /* Glassmorphism & Surface Highlights */
+  --glass-blur: blur(16px);
+  --card-highlight: linear-gradient(180deg, rgba(52, 211, 153, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+  --panel-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  /* Precise Borders & Divider Lines */
+  --border-subtle: rgba(30, 52, 41, 0.6);
+  --border-medium: rgba(45, 78, 62, 0.7);
+  --border-highlight: rgba(52, 211, 153, 0.4);
+  --border-glow: 0 0 15px rgba(16, 185, 129, 0.2);
+
+  /* High-Fidelity Typography */
+  --text-primary: #f8fafc;
+  --text-secondary: #9cb3a6;
+  --text-muted: #5e796c;
+  --text-on-accent: #021a0f;
+
+  /* Bioluminescent Emerald Accents */
+  --accent-emerald: #10b981;
+  --accent-emerald-bright: #34d399;
+  --accent-emerald-dim: rgba(16, 185, 129, 0.16);
+  --accent-glow: rgba(16, 185, 129, 0.25);
+
+  /* Radio Link & Telemetry Electric Cyan */
+  --accent-cyan: #38bdf8;
+  --accent-cyan-dim: rgba(56, 189, 248, 0.16);
+
+  /* Solar Harvest & Warning Amber Gold */
+  --accent-gold: #fbbf24;
+  --threat-warning: #f59e0b;
+  --threat-warning-bg: rgba(245, 158, 11, 0.14);
+  --threat-warning-border: rgba(245, 158, 11, 0.45);
+
+  /* Threat Severity Tones */
+  --threat-critical: #f43f5e;
+  --threat-critical-bg: rgba(244, 63, 94, 0.15);
+  --threat-critical-border: rgba(244, 63, 94, 0.45);
+  --threat-critical-glow: 0 0 18px rgba(244, 63, 94, 0.35);
+
+  --threat-info: #0ea5e9;
+  --threat-info-bg: rgba(14, 165, 233, 0.14);
+  --threat-info-border: rgba(14, 165, 233, 0.4);
+
+  --threat-safe: #10b981;
+  --threat-safe-bg: rgba(16, 185, 129, 0.14);
+  --threat-safe-border: rgba(16, 185, 129, 0.4);
+
+  /* Data Integrity Badges */
+  --badge-sim-bg: rgba(245, 158, 11, 0.14);
+  --badge-sim-border: rgba(245, 158, 11, 0.45);
+  --badge-sim-text: #fbbf24;
+
+  --badge-live-bg: rgba(16, 185, 129, 0.16);
+  --badge-live-border: rgba(52, 211, 153, 0.5);
+  --badge-live-text: #34d399;
+
+  /* Font Families */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* Layout Constants */
+  --sidebar-width: 268px;
+  --header-height: 62px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Atmospheric Subtle Mesh Background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(56, 189, 248, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(5, 150, 105, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-emerald);
+}
+
+/* Base Utility Classes */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  transition: all 0.15s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-emerald-bright);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+  background: var(--bg-panel-elevated);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-medium);
+}
+
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  transition: background-color 0.15s ease;
+}
+
+tr:hover td {
+  background-color: var(--bg-panel-hover);
+  color: var(--text-primary);
+}
+
+/* Code & Telemetry Mono */
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+}
+
+/* Pulsing Status Indicators */
+@keyframes pulseGlow {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(244, 63, 94, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(244, 63, 94, 0);
+  }
+}
+
+.pulse-critical {
+  animation: pulseGlow 1.8s infinite;
+}

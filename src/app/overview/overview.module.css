@@ -1,0 +1,281 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.headingGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pageTitle {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: -0.02em;
+}
+
+.pageSubtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+/* Glowing Critical Alert Banner */
+.alertBanner {
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.2) 0%, rgba(18, 25, 22, 0.92) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--threat-critical-border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 24px rgba(244, 63, 94, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.alertBanner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  bottom: 0;
+  background-color: var(--threat-critical);
+  box-shadow: 0 0 10px var(--threat-critical);
+}
+
+.bannerLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bannerIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: rgba(244, 63, 94, 0.25);
+  border: 1.5px solid var(--threat-critical);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--threat-critical);
+  flex-shrink: 0;
+}
+
+.bannerTitle {
+  font-size: 15px;
+  font-weight: 800;
+  color: #ff6b8b;
+  margin-bottom: 3px;
+  letter-spacing: 0.02em;
+}
+
+.bannerText {
+  font-size: 12px;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.bannerActionBtn {
+  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(244, 63, 94, 0.4);
+}
+
+.bannerActionBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(244, 63, 94, 0.6);
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: var(--bg-panel);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--panel-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(52, 211, 153, 0.3) 50%, transparent 100%);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 14px;
+}
+
+.panelTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.viewAllLink {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-emerald-bright);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.viewAllLink:hover {
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.confidenceBarWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.confidenceTrack {
+  width: 64px;
+  height: 6px;
+  background-color: var(--border-medium);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.confidenceFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.nodeList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nodeItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background-color: var(--bg-panel-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.nodeItem:hover {
+  border-color: var(--border-highlight);
+  background-color: var(--bg-panel-hover);
+  transform: translateX(2px);
+}
+
+.nodeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nodeName {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.nodeZone {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.nodeMetrics {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+
+.statusIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.statusOnline {
+  color: var(--accent-emerald-bright);
+}
+
+.statusAlert {
+  color: var(--threat-critical);
+}
+
+.statusSleep {
+  color: var(--text-muted);
+}
