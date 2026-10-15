@@ -65,13 +65,13 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ durationMs = 3200 })
       <div className={styles.contentWrapper}>
         <div className={styles.logoWrapper}>
           <div className={styles.logoAura} />
-          <VanRakshakLogo size={92} />
+          <VanRakshakLogo size={96} />
         </div>
 
         <div className={styles.titleHindi}>वनरक्षक</div>
         <h1 className={styles.titleEng}>VANRAKSHAK</h1>
         <div className={styles.subtitle}>
-          Acoustic Forest Defense &amp; LoRa Grid
+          Acoustic Forest Safeguard &amp; LoRa Grid
         </div>
 
         <div className={styles.progressContainer}>

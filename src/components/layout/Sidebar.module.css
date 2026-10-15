@@ -11,51 +11,38 @@
   z-index: 100;
   overflow-y: auto;
   box-shadow: 2px 0 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .brand {
-  padding: 20px 18px;
+  padding: 18px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   border-bottom: 1px solid var(--border-subtle);
   background: linear-gradient(180deg, rgba(16, 185, 129, 0.04) 0%, transparent 100%);
 }
 
-.brandInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.brandTitle {
-  font-size: 16px;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: -0.02em;
-  display: flex;
+.mobileCloseBtn {
+  display: none;
   align-items: center;
-  gap: 8px;
-}
-
-.brandTag {
-  font-size: 9px;
-  font-family: var(--font-mono);
-  background: rgba(16, 185, 129, 0.15);
-  color: var(--accent-emerald-bright);
-  padding: 2px 6px;
-  border-radius: 4px;
-  border: 1px solid rgba(52, 211, 153, 0.35);
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-
-.brandSubtitle {
-  font-size: 11px;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background-color: var(--bg-panel-elevated);
+  border: 1px solid var(--border-medium);
   color: var(--text-muted);
-  letter-spacing: 0.02em;
-  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.mobileCloseBtn:hover {
+  background-color: var(--bg-panel-hover);
+  color: #ffffff;
+  border-color: var(--accent-emerald-bright);
 }
 
 .navSection {
@@ -96,11 +83,11 @@
 }
 
 .navItemActive {
-  background: rgba(16, 185, 129, 0.12);
-  color: #ffffff;
-  border-color: rgba(16, 185, 129, 0.3);
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.18) 0%, rgba(245, 158, 11, 0.08) 100%);
+  color: #f0fdf4;
+  border-color: rgba(52, 211, 153, 0.35);
   font-weight: 600;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 3px 0 0 #34d399, 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .navIcon {
@@ -180,3 +167,22 @@
   box-shadow: 0 0 6px var(--accent-emerald-bright);
 }
 
+/* Responsive Mobile Screen Adaptation */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 280px;
+    max-width: 85vw;
+    transform: translateX(-100%);
+    z-index: 200;
+    box-shadow: none;
+  }
+
+  .sidebarOpen {
+    transform: translateX(0);
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.7);
+  }
+
+  .mobileCloseBtn {
+    display: flex;
+  }
+}

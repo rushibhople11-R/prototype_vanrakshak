@@ -1,5 +1,5 @@
 .radarCard {
-  background: linear-gradient(180deg, #12191f 0%, #0c1216 100%);
+  background: linear-gradient(180deg, #0e2017 0%, #08160f 100%);
   border: 1px solid var(--border-subtle);
   border-radius: 10px;
   padding: 18px 20px;
@@ -8,7 +8,7 @@
   gap: 14px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .radarCard::before {
@@ -17,8 +17,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.3) 50%, transparent 100%);
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 0%, rgba(245, 158, 11, 0.4) 30%, rgba(52, 211, 153, 0.5) 70%, transparent 100%);
 }
 
 .header {
@@ -67,7 +67,7 @@
   position: relative;
   width: 100%;
   height: 250px;
-  background-color: #080d11;
+  background-color: #050f0a;
   border: 1px solid var(--border-medium);
   border-radius: 8px;
   overflow: hidden;
@@ -308,4 +308,60 @@
   justify-content: space-between;
   width: 100%;
   color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: 4px;
 }
+
+/* Responsive Mobile Screen Shape Adjustments */
+@media (max-width: 600px) {
+  .radarCard {
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .radarViewport {
+    height: 220px;
+  }
+
+  .ring1 {
+    width: 75px;
+    height: 75px;
+  }
+
+  .ring2 {
+    width: 140px;
+    height: 140px;
+  }
+
+  .ring3 {
+    width: 205px;
+    height: 205px;
+  }
+
+  .sweepArm {
+    width: 105px;
+    height: 105px;
+  }
+
+  .marker500 {
+    top: calc(50% - 46px);
+  }
+
+  .marker1000 {
+    top: calc(50% - 78px);
+  }
+
+  .marker1500 {
+    top: calc(50% - 110px);
+  }
+
+  .telemetryBar {
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+
+  .nodeDetailRow {
+    gap: 8px;
+  }
+}
+

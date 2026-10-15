@@ -2,61 +2,65 @@
 
 :root {
   /* ----------------------------------------------------
-     VanRakshak Clean & Impressive Modern Dashboard Palette
-     Inspired by Linear, Vercel, and modern environmental intelligence
+     VanRakshak: Deep Emerald Pine & Gold Sentinel Palette
+     Rich midnight forest tones, glowing emerald,
+     warm gold sentinel accents & crisp typography
      ---------------------------------------------------- */
   
-  /* Background Foundations (Deep, Clean, Eye-Soothing Slate Charcoal) */
-  --bg-base: #090d10;
-  --bg-sidebar: #0d1216;
-  --bg-panel: #12191e;
-  --bg-panel-elevated: #162026;
-  --bg-panel-hover: #1b272f;
-  --bg-input: #0b1013;
+  /* Background Foundations (Deep Midnight Pine & Forest Obsidian) */
+  --bg-base: #06100b;
+  --bg-sidebar: #091710;
+  --bg-panel: #0d1e16;
+  --bg-panel-elevated: #12281e;
+  --bg-panel-hover: #183326;
+  --bg-input: #07140e;
 
-  /* Crisp, Hairline Borders & Shadows */
-  --border-subtle: #1b252c;
-  --border-medium: #24323b;
-  --border-highlight: #354854;
-  --panel-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.2);
+  /* Rich Forest Borders & Subtle Sheen */
+  --border-subtle: #163224;
+  --border-medium: #1f4431;
+  --border-highlight: #2d6348;
+  --panel-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
 
   /* Modern High-Legibility Typography */
-  --text-primary: #f8fafc;
+  --text-primary: #f0fdf4;
   --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-on-accent: #04140b;
+  --text-muted: #52796f;
+  --text-on-accent: #021a0d;
 
-  /* Iconic Accents */
+  /* Iconic Accents: Emerald & Gold Sentinel */
   --accent-emerald: #10b981;
   --accent-emerald-bright: #34d399;
-  --accent-emerald-dim: rgba(16, 185, 129, 0.12);
+  --accent-emerald-dim: rgba(16, 185, 129, 0.16);
+  --accent-gold: #f59e0b;
+  --accent-gold-bright: #fbbf24;
+  --accent-gold-dim: rgba(245, 158, 11, 0.16);
   --accent-cyan: #38bdf8;
-  --accent-cyan-dim: rgba(56, 189, 248, 0.12);
+  --accent-cyan-dim: rgba(56, 189, 248, 0.14);
 
   /* Warnings & Threats */
   --threat-critical: #f43f5e;
-  --threat-critical-bg: rgba(244, 63, 94, 0.12);
-  --threat-critical-border: rgba(244, 63, 94, 0.35);
+  --threat-critical-bg: rgba(244, 63, 94, 0.14);
+  --threat-critical-border: rgba(244, 63, 94, 0.4);
 
   --threat-warning: #f59e0b;
-  --threat-warning-bg: rgba(245, 158, 11, 0.12);
-  --threat-warning-border: rgba(245, 158, 11, 0.35);
+  --threat-warning-bg: rgba(245, 158, 11, 0.14);
+  --threat-warning-border: rgba(245, 158, 11, 0.4);
 
   --threat-info: #0284c7;
-  --threat-info-bg: rgba(2, 132, 199, 0.12);
-  --threat-info-border: rgba(2, 132, 199, 0.35);
+  --threat-info-bg: rgba(2, 132, 199, 0.14);
+  --threat-info-border: rgba(2, 132, 199, 0.4);
 
   --threat-safe: #10b981;
-  --threat-safe-bg: rgba(16, 185, 129, 0.12);
-  --threat-safe-border: rgba(16, 185, 129, 0.35);
+  --threat-safe-bg: rgba(16, 185, 129, 0.14);
+  --threat-safe-border: rgba(16, 185, 129, 0.4);
 
   /* Data Integrity Badges */
-  --badge-sim-bg: rgba(245, 158, 11, 0.12);
-  --badge-sim-border: rgba(245, 158, 11, 0.35);
+  --badge-sim-bg: rgba(245, 158, 11, 0.14);
+  --badge-sim-border: rgba(245, 158, 11, 0.4);
   --badge-sim-text: #fbbf24;
 
-  --badge-live-bg: rgba(16, 185, 129, 0.12);
-  --badge-live-border: rgba(16, 185, 129, 0.35);
+  --badge-live-bg: rgba(16, 185, 129, 0.14);
+  --badge-live-border: rgba(16, 185, 129, 0.4);
   --badge-live-text: #34d399;
 
   /* Font Families */
@@ -78,6 +82,7 @@ html,
 body {
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
   background-color: var(--bg-base);
   color: var(--text-primary);
   font-family: var(--font-sans);
@@ -87,7 +92,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle, High-End Ambient Background Glow */
+/* Subtle, High-End Ambient Background Glow (Emerald & Gold) */
 body::before {
   content: "";
   position: fixed;
@@ -96,8 +101,9 @@ body::before {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.04) 0%, transparent 45%),
-    radial-gradient(circle at 90% 85%, rgba(56, 189, 248, 0.04) 0%, transparent 45%);
+    radial-gradient(circle at 12% 18%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 88% 82%, rgba(245, 158, 11, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.03) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }

@@ -3,13 +3,18 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { DataOriginBadge } from '../common/DataOriginBadge';
+import { VanRakshakLogo } from '../common/VanRakshakLogo';
 import styles from './TopHeader.module.css';
 
 interface TopHeaderProps {
-  onQuickSimulate?: () => void;
+  onToggleMobileMenu?: () => void;
+  isMobileMenuOpen?: boolean;
 }
 
-export const TopHeader: React.FC<TopHeaderProps> = ({ onQuickSimulate }) => {
+export const TopHeader: React.FC<TopHeaderProps> = ({
+  onToggleMobileMenu,
+  isMobileMenuOpen = false,
+}) => {
   const [timeStr, setTimeStr] = useState<string>('');
 
   useEffect(() => {
@@ -32,6 +37,34 @@ export const TopHeader: React.FC<TopHeaderProps> = ({ onQuickSimulate }) => {
   return (
     <header className={styles.header}>
       <div className={styles.leftGroup}>
+        {/* Mobile Hamburger Toggle */}
+        <button
+          className={styles.mobileMenuBtn}
+          onClick={onToggleMobileMenu}
+          aria-label={isMobileMenuOpen ? 'Close navigation drawer' : 'Open navigation drawer'}
+          title={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+        >
+          {isMobileMenuOpen ? (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="20" height="20">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="20" height="20">
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          )}
+        </button>
+
+        {/* Mobile Brand (visible when sidebar is closed on mobile) */}
+        <div className={styles.mobileBrand}>
+          <VanRakshakLogo size={26} />
+          <span className={styles.mobileTitle}>VanRakshak</span>
+        </div>
+
+        {/* Desktop Sector Badge */}
         <div className={styles.sectorBadge}>
           <span className={styles.sectorIcon}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14">
@@ -39,20 +72,23 @@ export const TopHeader: React.FC<TopHeaderProps> = ({ onQuickSimulate }) => {
               <circle cx="12" cy="10" r="3" />
             </svg>
           </span>
-          <span>Satpura National Park — Sector 4 Canopy Grid</span>
+          <span className={styles.sectorTextFull}>Satpura National Park — Sector 4 Canopy Grid</span>
+          <span className={styles.sectorTextShort}>Sector 4 Grid</span>
         </div>
 
-        <div className={styles.divider}></div>
+        <div className={styles.desktopDivider}></div>
 
-        <DataOriginBadge isSimulated={true} label="SIMULATED DEMO MODE" />
+        <div className={styles.desktopOriginBadge}>
+          <DataOriginBadge isSimulated={true} label="SIMULATED DEMO" />
+        </div>
       </div>
 
       <div className={styles.rightGroup}>
-        <Link href="/settings" className={styles.quickActionBtn}>
+        <Link href="/settings" className={styles.quickActionBtn} title="Inject Acoustic Threat Simulation">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14">
             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
           </svg>
-          <span>Inject Test Threat</span>
+          <span className={styles.quickActionText}>Inject Threat</span>
         </Link>
 
         {timeStr && <div className={styles.clockBadge}>{timeStr}</div>}

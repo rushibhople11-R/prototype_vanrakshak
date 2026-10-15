@@ -15,7 +15,12 @@ interface NavItem {
   group?: 'core' | 'operations' | 'system';
 }
 
-export const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ isOpen = false, onClose }) => {
   const pathname = usePathname();
 
   const navItems: NavItem[] = [
@@ -176,6 +181,7 @@ export const Sidebar: React.FC = () => {
             <Link
               key={item.href}
               href={item.href}
+              onClick={() => onClose?.()}
               className={`${styles.navItem} ${isActive ? styles.navItemActive : ''}`}
             >
               {item.icon}
@@ -197,9 +203,22 @@ export const Sidebar: React.FC = () => {
   };
 
   return (
-    <aside className={styles.sidebar}>
+    <aside className={`${styles.sidebar} ${isOpen ? styles.sidebarOpen : ''}`}>
       <div className={styles.brand}>
         <VanRakshakLogo size={34} showText={true} subtitle="Acoustic Sentinel Grid" />
+        {onClose && (
+          <button
+            className={styles.mobileCloseBtn}
+            onClick={onClose}
+            aria-label="Close navigation"
+            title="Close menu"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="16" height="16">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        )}
       </div>
 
       <nav className={styles.navSection}>
